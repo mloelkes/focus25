@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { SafeAreaView, StyleSheet, Text, View } from "react-native";
 import ModeSwitcher from "../components/ModeSwitcher";
 import SessionCounter from "../components/SessionCounter";
 import TimerControls from "../components/TimerControls";
@@ -14,7 +14,6 @@ export default function TimerScreen() {
   const [isRunning, setIsRunning] = useState(false);
   const [completedSessions, setCompletedSessions] = useState(0);
 
-  // ⏱ Timer logic
   useEffect(() => {
     if (!isRunning) return;
 
@@ -35,57 +34,82 @@ export default function TimerScreen() {
     return () => clearInterval(interval);
   }, [isRunning, secondsLeft, mode]);
 
-  // ▶️ Start / Pause
   const handleStartPause = () => {
     setIsRunning((prev) => !prev);
   };
 
-  // 🔄 Reset
   const handleReset = () => {
     setIsRunning(false);
     setSecondsLeft(mode === "focus" ? FOCUS_DURATION : BREAK_DURATION);
   };
 
-  // 🔁 Mode switch
   const handleChangeMode = (newMode: TimerMode) => {
     setMode(newMode);
     setIsRunning(false);
-    setSecondsLeft(
-      newMode === "focus" ? FOCUS_DURATION : BREAK_DURATION
-    );
+    setSecondsLeft(newMode === "focus" ? FOCUS_DURATION : BREAK_DURATION);
   };
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Focus25</Text>
+    <SafeAreaView style={styles.safeArea}>
+      <View style={styles.container}>
+        <Text style={styles.title}>Focus25</Text>
+        <Text style={styles.subtitle}>
+          A minimal timer for focus and breaks
+        </Text>
 
-      <TimerDisplay time={formatTime(secondsLeft)} mode={mode} />
+        <View style={styles.timerCard}>
+          <TimerDisplay time={formatTime(secondsLeft)} mode={mode} />
+          <TimerControls
+            isRunning={isRunning}
+            onStartPause={handleStartPause}
+            onReset={handleReset}
+          />
+        </View>
 
-      <TimerControls
-        isRunning={isRunning}
-        onStartPause={handleStartPause}
-        onReset={handleReset}
-      />
+        <ModeSwitcher mode={mode} onChangeMode={handleChangeMode} />
 
-      <ModeSwitcher mode={mode} onChangeMode={handleChangeMode} />
-
-      <SessionCounter completedSessions={completedSessions} />
-    </View>
+        <SessionCounter completedSessions={completedSessions} />
+      </View>
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
+  safeArea: {
+    flex: 1,
+    backgroundColor: "#f6f1e9",
+  },
   container: {
     flex: 1,
-    backgroundColor: "#f7f4ef",
+    backgroundColor: "#f6f1e9",
     alignItems: "center",
     justifyContent: "center",
-    padding: 24,
+    paddingHorizontal: 24,
   },
   title: {
-    fontSize: 32,
-    fontWeight: "bold",
-    marginBottom: 24,
-    color: "#111",
+    fontSize: 36,
+    fontWeight: "700",
+    color: "#1f1f1f",
+    marginBottom: 8,
+  },
+  subtitle: {
+    fontSize: 16,
+    color: "#6b6b6b",
+    marginBottom: 32,
+    textAlign: "center",
+  },
+  timerCard: {
+    width: "100%",
+    maxWidth: 360,
+    backgroundColor: "#fffaf3",
+    borderRadius: 24,
+    paddingVertical: 32,
+    paddingHorizontal: 24,
+    shadowColor: "#000",
+    shadowOpacity: 0.08,
+    shadowRadius: 16,
+    shadowOffset: { width: 0, height: 6 },
+    elevation: 4,
+    alignItems: "center",
   },
 });

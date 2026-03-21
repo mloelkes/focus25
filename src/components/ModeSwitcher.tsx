@@ -22,7 +22,9 @@ export default function ModeSwitcher({
         <Text
           style={[
             styles.buttonText,
-            mode === "focus" ? styles.activeButtonText : styles.inactiveButtonText,
+            mode === "focus"
+              ? styles.activeButtonText
+              : styles.inactiveButtonText,
           ]}
         >
           Focus
@@ -39,7 +41,9 @@ export default function ModeSwitcher({
         <Text
           style={[
             styles.buttonText,
-            mode === "break" ? styles.activeButtonText : styles.inactiveButtonText,
+            mode === "break"
+              ? styles.activeButtonText
+              : styles.inactiveButtonText,
           ]}
         >
           Break
@@ -53,29 +57,29 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: "row",
     gap: 12,
-    marginTop: 24,
+    marginTop: 28,
   },
   button: {
     paddingVertical: 12,
     paddingHorizontal: 20,
-    borderRadius: 12,
-    minWidth: 100,
+    borderRadius: 14,
+    minWidth: 110,
     alignItems: "center",
   },
   activeButton: {
-    backgroundColor: "#111",
+    backgroundColor: "#1f1f1f",
   },
   inactiveButton: {
-    backgroundColor: "#e5e5e5",
+    backgroundColor: "#ece6dc",
   },
   buttonText: {
     fontSize: 16,
-    fontWeight: "600",
+    fontWeight: "700",
   },
   activeButtonText: {
-    color: "#fff",
+    color: "#ffffff",
   },
   inactiveButtonText: {
-    color: "#111",
+    color: "#1f1f1f",
   },
 });

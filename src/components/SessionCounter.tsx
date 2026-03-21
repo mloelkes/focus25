@@ -18,11 +18,11 @@ export default function SessionCounter({
 
 const styles = StyleSheet.create({
   container: {
-    marginTop: 24,
+    marginTop: 28,
   },
   text: {
     fontSize: 16,
-    color: "#444",
-    fontWeight: "500",
+    color: "#6b6b6b",
+    fontWeight: "600",
   },
 });

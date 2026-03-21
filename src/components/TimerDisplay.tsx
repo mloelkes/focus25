@@ -24,17 +24,18 @@ const styles = StyleSheet.create({
   container: {
     alignItems: "center",
     justifyContent: "center",
-    marginVertical: 32,
+    marginBottom: 24,
   },
   modeText: {
-    fontSize: 20,
+    fontSize: 18,
     fontWeight: "600",
     marginBottom: 12,
-    color: "#444",
+    color: "#6b6b6b",
+    letterSpacing: 0.4,
   },
   timeText: {
-    fontSize: 64,
-    fontWeight: "bold",
-    color: "#111",
+    fontSize: 72,
+    fontWeight: "700",
+    color: "#1f1f1f",
   },
 });
