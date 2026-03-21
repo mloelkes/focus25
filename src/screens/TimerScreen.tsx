@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { Alert, StyleSheet, Text, View } from "react-native";
+import { useEffect, useState } from "react";
+import { StyleSheet, Text, View } from "react-native";
 import ModeSwitcher from "../components/ModeSwitcher";
 import SessionCounter from "../components/SessionCounter";
 import TimerControls from "../components/TimerControls";
@@ -9,24 +9,50 @@ import type { TimerMode } from "../types/timer";
 import { formatTime } from "../utils/formatTime";
 
 export default function TimerScreen() {
-  const [isRunning, setIsRunning] = useState(false);
   const [mode, setMode] = useState<TimerMode>("focus");
+  const [secondsLeft, setSecondsLeft] = useState(FOCUS_DURATION);
+  const [isRunning, setIsRunning] = useState(false);
   const [completedSessions, setCompletedSessions] = useState(0);
 
-  const secondsLeft = mode === "focus" ? FOCUS_DURATION : BREAK_DURATION;
+  // ⏱ Timer logic
+  useEffect(() => {
+    if (!isRunning) return;
 
+    if (secondsLeft === 0) {
+      setIsRunning(false);
+
+      if (mode === "focus") {
+        setCompletedSessions((prev) => prev + 1);
+      }
+
+      return;
+    }
+
+    const interval = setInterval(() => {
+      setSecondsLeft((prev) => prev - 1);
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, [isRunning, secondsLeft, mode]);
+
+  // ▶️ Start / Pause
   const handleStartPause = () => {
     setIsRunning((prev) => !prev);
   };
 
+  // 🔄 Reset
   const handleReset = () => {
     setIsRunning(false);
-    Alert.alert("Timer reset");
+    setSecondsLeft(mode === "focus" ? FOCUS_DURATION : BREAK_DURATION);
   };
 
+  // 🔁 Mode switch
   const handleChangeMode = (newMode: TimerMode) => {
     setMode(newMode);
     setIsRunning(false);
+    setSecondsLeft(
+      newMode === "focus" ? FOCUS_DURATION : BREAK_DURATION
+    );
   };
 
   return (
