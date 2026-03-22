@@ -52,11 +52,17 @@ export default function TimerScreen() {
   return (
     <SafeAreaView style={styles.safeArea}>
       <View style={styles.container}>
-        <Text style={styles.title}>Focus25</Text>
-        <Text style={styles.subtitle}>Minimal focus timer</Text>
+        
+        {/* TOP */}
+        <View style={styles.topSection}>
+          <Text style={styles.title}>FOCUS 25</Text>
+          <Text style={styles.subtitle}>minimal focus timer</Text>
+        </View>
 
-        <View style={styles.timerCard}>
+        {/* CENTER */}
+        <View style={styles.centerSection}>
           <TimerDisplay time={formatTime(secondsLeft)} mode={mode} />
+
           <TimerControls
             isRunning={isRunning}
             onStartPause={handleStartPause}
@@ -64,9 +70,12 @@ export default function TimerScreen() {
           />
         </View>
 
-        <ModeSwitcher mode={mode} onChangeMode={handleChangeMode} />
+        {/* BOTTOM */}
+        <View style={styles.bottomSection}>
+          <ModeSwitcher mode={mode} onChangeMode={handleChangeMode} />
+          <SessionCounter completedSessions={completedSessions} />
+        </View>
 
-        <SessionCounter completedSessions={completedSessions} />
       </View>
     </SafeAreaView>
   );
@@ -77,36 +86,40 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#ffffff",
   },
+
   container: {
     flex: 1,
-    backgroundColor: "#ffffff",
-    alignItems: "center",
-    justifyContent: "center",
     paddingHorizontal: 28,
   },
+
+  topSection: {
+    paddingTop: 40,
+    alignItems: "center",
+  },
+
+  centerSection: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    gap: 48,
+  },
+
+  bottomSection: {
+    paddingBottom: 40,
+    alignItems: "center",
+    gap: 14,
+  },
+
   title: {
     fontSize: 28,
     fontWeight: "300",
     color: "#111111",
     marginBottom: 6,
-    letterSpacing: 0.2,
   },
+
   subtitle: {
     fontSize: 13,
     color: "#8a8a8a",
-    marginBottom: 36,
     fontWeight: "300",
-    letterSpacing: 0.2,
-  },
-  timerCard: {
-    width: "100%",
-    maxWidth: 340,
-    backgroundColor: "#ffffff",
-    borderRadius: 28,
-    paddingVertical: 36,
-    paddingHorizontal: 24,
-    borderWidth: 1,
-    borderColor: "#efefef",
-    alignItems: "center",
   },
 });

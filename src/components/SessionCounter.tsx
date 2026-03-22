@@ -10,7 +10,7 @@ export default function SessionCounter({
   return (
     <View style={styles.container}>
       <Text style={styles.text}>
-        Completed sessions: {completedSessions}
+        completed sessions: {completedSessions}
       </Text>
     </View>
   );

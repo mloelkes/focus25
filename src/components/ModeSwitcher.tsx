@@ -12,38 +12,22 @@ export default function ModeSwitcher({
 }: ModeSwitcherProps) {
   return (
     <View style={styles.container}>
-      <Pressable
-        style={[
-          styles.button,
-          mode === "focus" ? styles.activeButton : styles.inactiveButton,
-        ]}
-        onPress={() => onChangeMode("focus")}
-      >
+      <Pressable onPress={() => onChangeMode("focus")}>
         <Text
           style={[
-            styles.buttonText,
-            mode === "focus"
-              ? styles.activeButtonText
-              : styles.inactiveButtonText,
+            styles.text,
+            mode === "focus" ? styles.activeText : styles.inactiveText,
           ]}
         >
           Focus
         </Text>
       </Pressable>
-
-      <Pressable
-        style={[
-          styles.button,
-          mode === "break" ? styles.activeButton : styles.inactiveButton,
-        ]}
-        onPress={() => onChangeMode("break")}
-      >
+      
+      <Pressable onPress={() => onChangeMode("break")}>
         <Text
           style={[
-            styles.buttonText,
-            mode === "break"
-              ? styles.activeButtonText
-              : styles.inactiveButtonText,
+            styles.text,
+            mode === "break" ? styles.activeText : styles.inactiveText,
           ]}
         >
           Break
@@ -56,34 +40,20 @@ export default function ModeSwitcher({
 const styles = StyleSheet.create({
   container: {
     flexDirection: "row",
-    gap: 10,
-    marginTop: 26,
+    gap: 24,
+    marginTop: 28,
   },
-  button: {
-    paddingVertical: 9,
-    paddingHorizontal: 18,
-    borderRadius: 999,
-    minWidth: 96,
-    alignItems: "center",
-    borderWidth: 1,
+  text: {
+    fontSize: 13,
+    letterSpacing: 1.2,
+    textTransform: "uppercase",
   },
-  activeButton: {
-    backgroundColor: "#111111",
-    borderColor: "#111111",
-  },
-  inactiveButton: {
-    backgroundColor: "#ffffff",
-    borderColor: "#e5e5e5",
-  },
-  buttonText: {
-    fontSize: 14,
-    fontWeight: "400",
-    letterSpacing: 0.2,
-  },
-  activeButtonText: {
-    color: "#ffffff",
-  },
-  inactiveButtonText: {
+  activeText: {
     color: "#111111",
+    fontWeight: "500",
+  },
+  inactiveText: {
+    color: "#8a8a8a",
+    fontWeight: "400",
   },
 });

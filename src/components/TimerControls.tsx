@@ -13,14 +13,14 @@ export default function TimerControls({
 }: TimerControlsProps) {
   return (
     <View style={styles.container}>
-      <Pressable style={styles.primaryButton} onPress={onStartPause}>
-        <Text style={styles.primaryButtonText}>
-          {isRunning ? "Pause" : "Start"}
-        </Text>
+      <Pressable onPress={onReset}>
+        <Text style={styles.secondaryText}>Reset</Text>
       </Pressable>
 
-      <Pressable style={styles.secondaryButton} onPress={onReset}>
-        <Text style={styles.secondaryButtonText}>Reset</Text>
+      <Pressable onPress={onStartPause}>
+        <Text style={styles.primaryText}>
+          {isRunning ? "Pause" : "Start"}
+        </Text>
       </Pressable>
     </View>
   );
@@ -29,37 +29,20 @@ export default function TimerControls({
 const styles = StyleSheet.create({
   container: {
     flexDirection: "row",
-    gap: 10,
-    marginTop: 4,
+    gap: 24,
   },
-  primaryButton: {
-    backgroundColor: "#111111",
-    paddingVertical: 12,
-    paddingHorizontal: 22,
-    borderRadius: 999,
-    minWidth: 112,
-    alignItems: "center",
-  },
-  primaryButtonText: {
-    color: "#ffffff",
-    fontSize: 16,
-    fontWeight: "400",
-    letterSpacing: 0.2,
-  },
-  secondaryButton: {
-    backgroundColor: "#ffffff",
-    paddingVertical: 12,
-    paddingHorizontal: 22,
-    borderRadius: 999,
-    minWidth: 112,
-    alignItems: "center",
-    borderWidth: 1,
-    borderColor: "#e5e5e5",
-  },
-  secondaryButtonText: {
+  primaryText: {
+    fontSize: 13,
     color: "#111111",
-    fontSize: 16,
+    fontWeight: "500",
+    letterSpacing: 1.2,
+    textTransform: "uppercase",
+  },
+  secondaryText: {
+    fontSize: 13,
+    color: "#8a8a8a",
     fontWeight: "400",
-    letterSpacing: 0.2,
+    letterSpacing: 1.2,
+    textTransform: "uppercase",
   },
 });

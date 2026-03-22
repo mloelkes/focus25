@@ -24,14 +24,13 @@ const styles = StyleSheet.create({
   container: {
     alignItems: "center",
     justifyContent: "center",
-    marginBottom: 28,
   },
   modeText: {
     fontSize: 13,
     fontWeight: "400",
-    marginBottom: 14,
+    marginBottom: 26,
     color: "#8a8a8a",
-    letterSpacing: 1.4,
+    letterSpacing: 1.2,
     textTransform: "uppercase",
   },
   timeText: {
