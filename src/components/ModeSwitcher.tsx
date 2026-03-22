@@ -56,30 +56,34 @@ export default function ModeSwitcher({
 const styles = StyleSheet.create({
   container: {
     flexDirection: "row",
-    gap: 12,
-    marginTop: 28,
+    gap: 10,
+    marginTop: 26,
   },
   button: {
-    paddingVertical: 12,
-    paddingHorizontal: 20,
-    borderRadius: 14,
-    minWidth: 110,
+    paddingVertical: 9,
+    paddingHorizontal: 18,
+    borderRadius: 999,
+    minWidth: 96,
     alignItems: "center",
+    borderWidth: 1,
   },
   activeButton: {
-    backgroundColor: "#1f1f1f",
+    backgroundColor: "#111111",
+    borderColor: "#111111",
   },
   inactiveButton: {
-    backgroundColor: "#ece6dc",
+    backgroundColor: "#ffffff",
+    borderColor: "#e5e5e5",
   },
   buttonText: {
-    fontSize: 16,
-    fontWeight: "700",
+    fontSize: 14,
+    fontWeight: "400",
+    letterSpacing: 0.2,
   },
   activeButtonText: {
     color: "#ffffff",
   },
   inactiveButtonText: {
-    color: "#1f1f1f",
+    color: "#111111",
   },
 });

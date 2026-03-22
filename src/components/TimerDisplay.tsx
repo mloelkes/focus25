@@ -10,7 +10,7 @@ export default function TimerDisplay({
   time,
   mode,
 }: TimerDisplayProps) {
-  const modeLabel = mode === "focus" ? "Focus Session" : "Break Time";
+  const modeLabel = mode === "focus" ? "Focus" : "Break";
 
   return (
     <View style={styles.container}>
@@ -24,18 +24,20 @@ const styles = StyleSheet.create({
   container: {
     alignItems: "center",
     justifyContent: "center",
-    marginBottom: 24,
+    marginBottom: 28,
   },
   modeText: {
-    fontSize: 18,
-    fontWeight: "600",
-    marginBottom: 12,
-    color: "#6b6b6b",
-    letterSpacing: 0.4,
+    fontSize: 13,
+    fontWeight: "400",
+    marginBottom: 14,
+    color: "#8a8a8a",
+    letterSpacing: 1.4,
+    textTransform: "uppercase",
   },
   timeText: {
-    fontSize: 72,
-    fontWeight: "700",
-    color: "#1f1f1f",
+    fontSize: 70,
+    fontWeight: "300",
+    color: "#111111",
+    letterSpacing: -1.5,
   },
 });

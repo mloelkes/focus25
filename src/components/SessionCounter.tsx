@@ -10,7 +10,7 @@ export default function SessionCounter({
   return (
     <View style={styles.container}>
       <Text style={styles.text}>
-        Completed sessions today: {completedSessions}
+        Completed sessions: {completedSessions}
       </Text>
     </View>
   );
@@ -18,11 +18,12 @@ export default function SessionCounter({
 
 const styles = StyleSheet.create({
   container: {
-    marginTop: 28,
+    marginTop: 26,
   },
   text: {
-    fontSize: 16,
-    color: "#6b6b6b",
-    fontWeight: "600",
+    fontSize: 13,
+    color: "#8a8a8a",
+    fontWeight: "300",
+    letterSpacing: 0.2,
   },
 });

@@ -53,9 +53,7 @@ export default function TimerScreen() {
     <SafeAreaView style={styles.safeArea}>
       <View style={styles.container}>
         <Text style={styles.title}>Focus25</Text>
-        <Text style={styles.subtitle}>
-          A minimal timer for focus and breaks
-        </Text>
+        <Text style={styles.subtitle}>Minimal focus timer</Text>
 
         <View style={styles.timerCard}>
           <TimerDisplay time={formatTime(secondsLeft)} mode={mode} />
@@ -77,39 +75,38 @@ export default function TimerScreen() {
 const styles = StyleSheet.create({
   safeArea: {
     flex: 1,
-    backgroundColor: "#f6f1e9",
+    backgroundColor: "#ffffff",
   },
   container: {
     flex: 1,
-    backgroundColor: "#f6f1e9",
+    backgroundColor: "#ffffff",
     alignItems: "center",
     justifyContent: "center",
-    paddingHorizontal: 24,
+    paddingHorizontal: 28,
   },
   title: {
-    fontSize: 36,
-    fontWeight: "700",
-    color: "#1f1f1f",
-    marginBottom: 8,
+    fontSize: 28,
+    fontWeight: "300",
+    color: "#111111",
+    marginBottom: 6,
+    letterSpacing: 0.2,
   },
   subtitle: {
-    fontSize: 16,
-    color: "#6b6b6b",
-    marginBottom: 32,
-    textAlign: "center",
+    fontSize: 13,
+    color: "#8a8a8a",
+    marginBottom: 36,
+    fontWeight: "300",
+    letterSpacing: 0.2,
   },
   timerCard: {
     width: "100%",
-    maxWidth: 360,
-    backgroundColor: "#fffaf3",
-    borderRadius: 24,
-    paddingVertical: 32,
+    maxWidth: 340,
+    backgroundColor: "#ffffff",
+    borderRadius: 28,
+    paddingVertical: 36,
     paddingHorizontal: 24,
-    shadowColor: "#000",
-    shadowOpacity: 0.08,
-    shadowRadius: 16,
-    shadowOffset: { width: 0, height: 6 },
-    elevation: 4,
+    borderWidth: 1,
+    borderColor: "#efefef",
     alignItems: "center",
   },
 });
