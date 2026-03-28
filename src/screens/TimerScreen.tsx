@@ -6,6 +6,7 @@ import ModeSwitcher from "../components/ModeSwitcher";
 import SessionCounter from "../components/SessionCounter";
 import TimerControls from "../components/TimerControls";
 import TimerDisplay from "../components/TimerDisplay";
+import { MOTIVATION_LINES } from "../constants/motivation";
 import { BREAK_DURATION, FOCUS_DURATION } from "../constants/timer";
 import type { TimerMode } from "../types/timer";
 import { formatTime } from "../utils/formatTime";
@@ -15,6 +16,10 @@ export default function TimerScreen() {
   const [secondsLeft, setSecondsLeft] = useState(FOCUS_DURATION);
   const [isRunning, setIsRunning] = useState(false);
   const [completedSessions, setCompletedSessions] = useState(0);
+  const [motivationLine] = useState(
+    () =>
+      MOTIVATION_LINES[Math.floor(Math.random() * MOTIVATION_LINES.length)]
+  );
   const isComplete = secondsLeft === 0;
   const modeDuration = mode === "focus" ? FOCUS_DURATION : BREAK_DURATION;
 
@@ -78,6 +83,7 @@ export default function TimerScreen() {
           <View style={styles.container}>
             <View style={styles.topSection}>
               <AppLogo />
+              <Text style={styles.motivationText}>{motivationLine}</Text>
             </View>
 
             <View style={styles.centerSection}>
@@ -124,8 +130,19 @@ const styles = StyleSheet.create({
   },
 
   topSection: {
-    paddingTop: 28,
+    paddingTop: 40,
     alignItems: "center",
+  },
+
+  motivationText: {
+    maxWidth: 278,
+    paddingHorizontal: 18,
+    fontSize: 15,
+    lineHeight: 24,
+    color: "#958168",
+    textAlign: "center",
+    fontWeight: "400",
+    fontStyle: "italic",
   },
 
   centerSection: {
