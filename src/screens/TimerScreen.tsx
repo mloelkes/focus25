@@ -61,14 +61,14 @@ export default function TimerScreen() {
 
   return (
     <LinearGradient
-      colors={["#faf4ec", "#f2e3cf", "#ead6be", "#f6ede2"]}
-      locations={[0, 0.3, 0.74, 1]}
+      colors={["#faf4ec", "#f3e6d4", "#efddc8", "#f7efe5"]}
+      locations={[0, 0.32, 0.72, 1]}
       start={{ x: 0.1, y: 0.04 }}
       end={{ x: 0.9, y: 1 }}
       style={styles.gradientBackground}
     >
       <LinearGradient
-        colors={["rgba(255,255,255,0.34)", "rgba(255,246,232,0.12)", "rgba(214,181,142,0.16)"]}
+        colors={["rgba(255,255,255,0.34)", "rgba(255,246,232,0.12)", "rgba(214,181,142,0.1)"]}
         locations={[0, 0.48, 1]}
         start={{ x: 0.88, y: 0.08 }}
         end={{ x: 0.14, y: 0.92 }}
