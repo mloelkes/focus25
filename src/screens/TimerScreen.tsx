@@ -13,6 +13,8 @@ export default function TimerScreen() {
   const [secondsLeft, setSecondsLeft] = useState(FOCUS_DURATION);
   const [isRunning, setIsRunning] = useState(false);
   const [completedSessions, setCompletedSessions] = useState(0);
+  const isComplete = secondsLeft === 0;
+  const modeDuration = mode === "focus" ? FOCUS_DURATION : BREAK_DURATION;
 
   useEffect(() => {
     if (!isRunning) return;
@@ -35,12 +37,18 @@ export default function TimerScreen() {
   }, [isRunning, secondsLeft, mode]);
 
   const handleStartPause = () => {
+    if (isComplete) {
+      setSecondsLeft(modeDuration);
+      setIsRunning(true);
+      return;
+    }
+
     setIsRunning((prev) => !prev);
   };
 
   const handleReset = () => {
     setIsRunning(false);
-    setSecondsLeft(mode === "focus" ? FOCUS_DURATION : BREAK_DURATION);
+    setSecondsLeft(modeDuration);
   };
 
   const handleChangeMode = (newMode: TimerMode) => {
@@ -65,6 +73,7 @@ export default function TimerScreen() {
 
           <TimerControls
             isRunning={isRunning}
+            isComplete={isComplete}
             onStartPause={handleStartPause}
             onReset={handleReset}
           />

@@ -2,12 +2,14 @@ import { Pressable, StyleSheet, Text, View } from "react-native";
 
 type TimerControlsProps = {
   isRunning: boolean;
+  isComplete: boolean;
   onStartPause: () => void;
   onReset: () => void;
 };
 
 export default function TimerControls({
   isRunning,
+  isComplete,
   onStartPause,
   onReset,
 }: TimerControlsProps) {
@@ -19,7 +21,7 @@ export default function TimerControls({
 
       <Pressable onPress={onStartPause}>
         <Text style={styles.primaryText}>
-          {isRunning ? "Pause" : "Start"}
+          {isRunning ? "Pause" : isComplete ? "Restart" : "Start"}
         </Text>
       </Pressable>
     </View>
