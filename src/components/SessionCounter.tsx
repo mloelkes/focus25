@@ -9,21 +9,37 @@ export default function SessionCounter({
 }: SessionCounterProps) {
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>
-        completed sessions: {completedSessions}
-      </Text>
+      <Text style={styles.label}>Completed Sessions</Text>
+      <Text style={styles.value}>{completedSessions}</Text>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    marginTop: 26,
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+    paddingVertical: 6,
+    paddingHorizontal: 2,
   },
-  text: {
-    fontSize: 13,
-    color: "#8a8a8a",
-    fontWeight: "300",
-    letterSpacing: 0.2,
+  label: {
+    fontSize: 12,
+    letterSpacing: 1.4,
+    textTransform: "uppercase",
+    color: "#907b59",
+    fontWeight: "600",
+  },
+  value: {
+    minWidth: 36,
+    paddingVertical: 8,
+    paddingHorizontal: 14,
+    borderRadius: 999,
+    overflow: "hidden",
+    textAlign: "center",
+    fontSize: 16,
+    color: "#17120e",
+    backgroundColor: "#ead8bb",
+    fontWeight: "600",
   },
 });

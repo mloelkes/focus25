@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
+import { LinearGradient } from "expo-linear-gradient";
 import { SafeAreaView, StyleSheet, Text, View } from "react-native";
+import AppLogo from "../components/AppLogo";
 import ModeSwitcher from "../components/ModeSwitcher";
 import SessionCounter from "../components/SessionCounter";
 import TimerControls from "../components/TimerControls";
@@ -58,51 +60,71 @@ export default function TimerScreen() {
   };
 
   return (
-    <SafeAreaView style={styles.safeArea}>
-      <View style={styles.container}>
-        
-        {/* TOP */}
-        <View style={styles.topSection}>
-          <Text style={styles.title}>FOCUS 25</Text>
-          <Text style={styles.subtitle}>minimal focus timer</Text>
-        </View>
+    <LinearGradient
+      colors={["#faf4ec", "#f2e3cf", "#ead6be", "#f6ede2"]}
+      locations={[0, 0.3, 0.74, 1]}
+      start={{ x: 0.1, y: 0.04 }}
+      end={{ x: 0.9, y: 1 }}
+      style={styles.gradientBackground}
+    >
+      <LinearGradient
+        colors={["rgba(255,255,255,0.34)", "rgba(255,246,232,0.12)", "rgba(214,181,142,0.16)"]}
+        locations={[0, 0.48, 1]}
+        start={{ x: 0.88, y: 0.08 }}
+        end={{ x: 0.14, y: 0.92 }}
+        style={styles.overlayGradient}
+      >
+        <SafeAreaView style={styles.safeArea}>
+          <View style={styles.container}>
+            <View style={styles.topSection}>
+              <AppLogo />
+            </View>
 
-        {/* CENTER */}
-        <View style={styles.centerSection}>
-          <TimerDisplay time={formatTime(secondsLeft)} mode={mode} />
+            <View style={styles.centerSection}>
+              <TimerDisplay time={formatTime(secondsLeft)} mode={mode} />
 
-          <TimerControls
-            isRunning={isRunning}
-            isComplete={isComplete}
-            onStartPause={handleStartPause}
-            onReset={handleReset}
-          />
-        </View>
+              <TimerControls
+                isRunning={isRunning}
+                isComplete={isComplete}
+                onStartPause={handleStartPause}
+                onReset={handleReset}
+              />
+            </View>
 
-        {/* BOTTOM */}
-        <View style={styles.bottomSection}>
-          <ModeSwitcher mode={mode} onChangeMode={handleChangeMode} />
-          <SessionCounter completedSessions={completedSessions} />
-        </View>
-
-      </View>
-    </SafeAreaView>
+            <View style={styles.bottomSection}>
+              <Text style={styles.footerLabel}>Session Settings</Text>
+              <ModeSwitcher mode={mode} onChangeMode={handleChangeMode} />
+              <SessionCounter completedSessions={completedSessions} />
+            </View>
+          </View>
+        </SafeAreaView>
+      </LinearGradient>
+    </LinearGradient>
   );
 }
 
 const styles = StyleSheet.create({
+  gradientBackground: {
+    flex: 1,
+  },
+
+  overlayGradient: {
+    flex: 1,
+  },
+
   safeArea: {
     flex: 1,
-    backgroundColor: "#ffffff",
+    backgroundColor: "transparent",
   },
 
   container: {
     flex: 1,
-    paddingHorizontal: 28,
+    paddingHorizontal: 24,
+    position: "relative",
   },
 
   topSection: {
-    paddingTop: 40,
+    paddingTop: 28,
     alignItems: "center",
   },
 
@@ -110,25 +132,36 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    gap: 48,
+    gap: 44,
   },
 
   bottomSection: {
-    paddingBottom: 40,
-    alignItems: "center",
-    gap: 14,
+    marginBottom: 28,
+    paddingHorizontal: 18,
+    paddingTop: 18,
+    paddingBottom: 20,
+    borderRadius: 30,
+    backgroundColor: "#fcf8f1",
+    borderWidth: 1,
+    borderColor: "#e7dccb",
+    alignItems: "stretch",
+    gap: 16,
+    shadowColor: "#201813",
+    shadowOpacity: 0.08,
+    shadowRadius: 24,
+    shadowOffset: {
+      width: 0,
+      height: 14,
+    },
+    elevation: 3,
   },
 
-  title: {
-    fontSize: 28,
-    fontWeight: "300",
-    color: "#111111",
-    marginBottom: 6,
-  },
-
-  subtitle: {
-    fontSize: 13,
-    color: "#8a8a8a",
-    fontWeight: "300",
+  footerLabel: {
+    fontSize: 11,
+    letterSpacing: 2.6,
+    textTransform: "uppercase",
+    color: "#9a8661",
+    textAlign: "center",
+    fontWeight: "600",
   },
 });
